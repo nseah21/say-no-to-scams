@@ -16,14 +16,22 @@ Leveraging on the latest AI technologies to analyse uploaded conversation images
 ### 1. 🔎 Upload Text Description of Scam 
 Users will need to input Scam Source (Phone number, email address, or website URL), Where did you encounter the scam? (e.g. Email, Phone call, SMS ) as well as the Description of Scam. 
 
+![Form Input Page](./assets/demo-form-input.png)
+
 After filling up the form, you will just need to click on the submit button. Receive a customised report on the scam risk level determined and our suggestions based on our AI model.
+
+![Response Page](./assets/demo-llm-response.png)
 
 ### 2. 🔎 Upload Image Description of Scam
 Users will simply upload images of the Message or conversation and click on the submit button. 
 Receive a customised report on the scam risk level determined and our suggestions based on our AI model.
 
+![Image Input Page](./assets/demo-screenshot-input.png)
+
 ### 3. 🔎 Read Scam Stories
 Visit our personalised curated Scam Stories Page to view ALL the Scam Stories that were previously updated by other users or curated by us. You will be able to read through all the Scam Stories and gain knowledge all the suggestions and advice provided by our AI model. 
+
+![Suspected Scam Page](./assets/suspected-scam.jpg)
 
 #### 📃 How does it help with our problem?
 1. Empowering the Public: Customised Scam Reports & User
