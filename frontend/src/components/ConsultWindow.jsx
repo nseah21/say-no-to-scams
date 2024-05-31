@@ -13,27 +13,11 @@ const ConsultWindow = () => {
     <container className="w-full max-w-xs">
       {useFileUpload ? (
         <>
-          <UploadSection />
-          <div className="grid place-items-end">
-            <button
-              className="text-sm text-blue-700"
-              onClick={toggleUseFileUpload}
-            >
-              Use a form instead?
-            </button>
-          </div>
+          <UploadSection toggleUseFileUpload={toggleUseFileUpload}/>
         </>
       ) : (
         <>
-          <FormSection />
-          <div className="grid place-items-end">
-            <button
-              className="text-sm text-blue-700"
-              onClick={toggleUseFileUpload}
-            >
-              Use a screenshot instead?
-            </button>
-          </div>
+          <FormSection toggleUseFileUpload={toggleUseFileUpload}/>
         </>
       )}
     </container>
