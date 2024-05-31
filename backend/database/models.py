@@ -9,7 +9,7 @@ class ScamRecord(Base):
     id = Column(Integer, primary_key=True, index=True)
     description = Column(String)
     likelihood_of_scam = Column(String)
-    score = Column(String)
+    score = Column(Integer)
     explanation = Column(String)
     type_of_scam = Column(String)
     suggestions = Column(String)
