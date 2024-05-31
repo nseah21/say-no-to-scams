@@ -3,7 +3,7 @@ import Image from "next/image";
 import Mascot from "./Mascot";
 import ResponseSection from "./ResponseSection";
 
-const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Tell me your story and I will provide you with useful advice!`;
+const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent LLM equipped with RAG capabilities. Tell me your story and I will provide you with useful advice!`;
 
 const UploadSection = ({ toggleUseFileUpload }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -18,7 +18,6 @@ const UploadSection = ({ toggleUseFileUpload }) => {
   const [loading, setLoading] = useState(false);
 
   const handleFileChange = (event) => {
-    console.log(event.target.files[0]);
     setUploadedFile(event.target.files[0]);
   };
 
@@ -26,7 +25,6 @@ const UploadSection = ({ toggleUseFileUpload }) => {
     event.preventDefault();
 
     setLoading(true);
-    console.log(uploadedFile);
 
     const formData = new FormData();
     formData.append("consent", consent);
@@ -53,7 +51,6 @@ const UploadSection = ({ toggleUseFileUpload }) => {
       );
       setType(results.message.Type_of_Scam);
       setLoading(false);
-      console.log(results);
     } catch (error) {
       console.error(error);
     }
