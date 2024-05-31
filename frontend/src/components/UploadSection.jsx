@@ -9,14 +9,33 @@ const UploadSection = ({ toggleUseFileUpload }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [showResponse, setShowResponse] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const handleFileChange = (event) => {
     console.log(event.target.files[0]);
     setUploadedFile(event.target.files[0]);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setLoading(true);
     console.log(uploadedFile);
+
+    const formData = new FormData();
+    formData.append("file", uploadedFile);
+
+    try {
+      const response = await fetch("http://localhost:8000/analyse", {
+        method: "POST",
+        body: formData,
+      });
+      const results = await response.json();
+      console.log(results);
+    } catch (error) {
+      console.error(error);
+    }
+    setLoading(false);
     setShowResponse(true);
   };
 
