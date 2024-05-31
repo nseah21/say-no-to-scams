@@ -1,16 +1,11 @@
-from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
 from dotenv import load_dotenv
-from langchain.schema.messages import HumanMessage, SystemMessage
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
-from langchain.chains import create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain_core.prompts import PromptTemplate
-from langchain_core.runnables import RunnablePassthrough
-from langchain_core.prompts import MessagesPlaceholder
-from langchain_core.pydantic_v1 import BaseModel, Field
+from langchain_chroma import Chroma
 from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.pydantic_v1 import BaseModel, Field
+from langchain_core.runnables import RunnablePassthrough
+from langchain_openai import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
 
 load_dotenv()
 
@@ -64,7 +59,7 @@ def scam_analysis_RAG(input_message: str):
                     
                     Context: {context}
                     
-                    You should also evaluates the conversations for Scam likeihood, generating an AI score between
+                    You should also evaluates the conversations for Scam likelihood, generating an AI score between
                     0 to 100. With 100 being highly suspected Scam and 0 being not likely to be a Scam. 
                     
                     Your output should contain the following information in JSON format --> Description, Likelihood_of_Scam, 
@@ -84,8 +79,7 @@ def scam_analysis_RAG(input_message: str):
         | llm
         | parser
     )
-    response = rag_chain.invoke(input_message)
-    print(response)
+    return rag_chain.invoke(input_message)
 
 
 if __name__ == "__main__":

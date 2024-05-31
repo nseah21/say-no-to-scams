@@ -1,12 +1,6 @@
-from langchain.prompts.chat import (
-    ChatPromptTemplate,
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-)
+from dotenv import load_dotenv
 from langchain.schema.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
-import os
-from dotenv import load_dotenv
 
 load_dotenv()
 
