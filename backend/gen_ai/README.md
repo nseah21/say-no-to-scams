@@ -2,7 +2,7 @@
 <h1>SCAM Detector using LLM</h1>
 </div>
 
-## Introduction
+## 👉 Introduction
 Leveraging on the latest AI technologies to analyse uploaded conversation images or text description for scam detection, offering accurate replies and suggestions to users. Leveraging on cutting-edge technlogies such as GPT-Vision, GPT-4, the platform extract and analyses conversation flows, converting them into JSON format for further evaluation. An innovative scoring system, powered by LangChain Large Language Model (LLM) equipped with a knowledge base will aid in evaluating the scam likelihood, with the integration of a vector databse for enhanced accuracy through similarity search. The Large Language Model will provide real-time feedback to users which include crucial information such as AI-determined scam score, explanation and suggestions to prevent being caught in a Scam trap. 
 
 ## Tech Stack 
@@ -72,6 +72,8 @@ Retrieval Augmented Generation (RAG) is emerging as a crucial framework to utili
 RAG involves searching across a vast corpus of private data and retrieving results that are most similar to the query asked y the user so that it can be passed on to the LLM as context. This approach will allow LLM to better understand the user's query and its context, leading to more accurate and pertinent responses, and reducing hallucinations. 
 
 #### Steps in RAG
+
+![Retrieval Augmented Generation](./assets/RAG-image.png)
 1. Document Loading
 - In the initial step, relevant documents are ingested and prepared for further processing. So, in this case, we are using CSVLoader from LangChain to load the pre-processed CSV Data. 
 2. Splitting & Chunking
@@ -83,6 +85,5 @@ RAG involves searching across a vast corpus of private data and retrieving resul
 5. Generate Output 
 - Finally, the retrieved chunks are used to generate a coherent response. This output can be in the form of text. 
 
-![Retrieval Augmented Generation](./assets/RAG-image.png)
 
 

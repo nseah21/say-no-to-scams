@@ -14,9 +14,7 @@ export default function Stories() {
   };
 
   useEffect(() => {
-    console.log(stories);
     fetchData();
-    console.log(stories);
   }, []);
 
   return (

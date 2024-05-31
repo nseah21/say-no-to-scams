@@ -37,7 +37,7 @@ def vector_stores():
     # 3. Store it in Chroma VectorStores and Saves it to disk
     embedding_function = OpenAIEmbeddings()
     vectorstore = Chroma.from_documents(
-        documents=splits, embedding=embedding_function, persist_directory="./chorma_db"
+        documents=splits, embedding=embedding_function, persist_directory="./chroma_db"
     )
 
     return vectorstore
