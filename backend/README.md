@@ -28,5 +28,8 @@ pip install -r requirements.txt
 
 ### 4. Run FastAPI Server
 ```bash
-fastapi dev run.py
+fastapi dev main.py
 ```
+
+### 5. Open Browser
+Open [Swagger Page](http://localhost:8000/docs) in browser to view the API documentation.
