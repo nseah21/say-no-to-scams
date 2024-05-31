@@ -12,6 +12,7 @@ class Medium(Enum):
     WEBSITE = "website"
     SOCIAL_MEDIA = "social_media"
     EMAIL = "email"
+    ECOMMERCE = "ecommerce"
     OTHER = "other"
 
 

@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Mascot from "./Mascot";
 
-const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Let me evaluate your story and provide you with useful advice!`;
+const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Tell me your story and I will provide you with useful advice!`;
 
 const FormSection = ({ toggleUseFileUpload }) => {
   const sourceRef = useRef("");
@@ -24,9 +24,9 @@ const FormSection = ({ toggleUseFileUpload }) => {
         className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
         onSubmit={handleSubmit}
       >
-        <div className="mb-4">
+        <div className="mb-5">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-md font-bold mb-2"
             htmlFor="Source"
           >
             Scam Source
@@ -39,37 +39,38 @@ const FormSection = ({ toggleUseFileUpload }) => {
           />
         </div>
 
-        <div className="mb-4">
+        <div className="mb-5">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-md font-bold mb-2"
             htmlFor="Method"
           >
             Where did you encounter the scam?
           </label>
           <select
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow border rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
             ref={methodRef}
           >
             <option value="">Select an option</option>
-            <option value="Phishing call/SMS/email">
-              Phishing call/SMS/email
-            </option>
-            <option value="Social media">Social media</option>
-            <option value="Spoofed website">Spoofed website</option>
-            <option value="Others">Others</option>
+            <option value="email">Email</option>
+            <option value="phone">Phone Call</option>
+            <option value="sms">SMS</option>
+            <option value="social_media">Social Media</option>
+            <option value="website">Website</option>
+            <option value="ecommerce">Ecommerce Platform</option>
+            <option value="other">Others</option>
           </select>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-5">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-md font-bold mb-2"
             htmlFor="Source"
           >
             Description of Scam
           </label>
           <textarea
             className="shadow appearance-none border rounded w-full min-h-48 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter your description here"
+            placeholder={"Enter a short description here...\n\n\nExample:\n\nI received a call from this number +999 12 345 6789 with a name ‘Starhub Company’ telling me that I won $50,000 dollars.\n\n He asked me to make a bank transfer for a tax payment first before I can receive the prize."}
             ref={descriptionRef}
           />
         </div>

@@ -11,7 +11,7 @@ const Mascot = ({ text }) => {
         alt="An icon of a robot mascot"
       />
       <div>
-        <p className="shadow p-5 text-sm font-bold text-gray-900 border-gray-200 bg-gray-400 rounded-tr-3xl rounded-br-3xl rounded-tl-3xl">
+        <p className="shadow-md border p-5 text-sm font-bold text-gray-900 border-gray-300 bg-slate-300 rounded-tr-3xl rounded-br-3xl rounded-tl-3xl">
           {text}
         </p>
       </div>
