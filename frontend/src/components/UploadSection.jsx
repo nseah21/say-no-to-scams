@@ -3,7 +3,7 @@ import Image from "next/image";
 import Mascot from "./Mascot";
 import ResponseSection from "./ResponseSection";
 
-const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Let me evaluate your story and provide you with useful advice!`;
+const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Tell me your story and I will provide you with useful advice!`;
 
 const UploadSection = ({ toggleUseFileUpload }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -25,7 +25,7 @@ const UploadSection = ({ toggleUseFileUpload }) => {
       return (
         <div className="flex flex-col items-center justify-center pt-5 pb-6">
           <Image
-            className="w-8 h-8 mb-4"
+            className="w-8 h-8 mb-5"
             src="/icons/tick-circle-svgrepo-com.svg"
             alt=""
             width={24}
@@ -82,7 +82,7 @@ const UploadSection = ({ toggleUseFileUpload }) => {
             onSubmit={handleSubmit}
           >
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-md font-bold mb-2"
               htmlFor="Source"
             >
               Upload an image
@@ -104,7 +104,7 @@ const UploadSection = ({ toggleUseFileUpload }) => {
             </div>
             <div className="flex justify-center">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-gray-900 w-48 hover:bg-gray-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Submit
