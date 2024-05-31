@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from models import ScamRequestBody
+from gen_ai.scam_analysis_RAG import scam_analysis_RAG
 
 app = FastAPI()
 
@@ -8,9 +9,13 @@ app = FastAPI()
 async def post_scam(body: ScamRequestBody):
     """
     Endpoint for frontend to call, takes in the same fields in the frontend form.
-    The method should then query the vectordb for the model to predict the scam probability.
+    Then, call the scam_analysis_RAG function to get the response.
     """
-    print(body.dict())
-    # ToDO: Query the vectordb for the model to predict the scam probability
-    return {"status": "success",
-            "message": "Scam report received."}
+    prompt = format_input_prompt(body)
+    response = scam_analysis_RAG(prompt)
+    return {"status": "success", "message": response}
+
+
+#  Utility functions
+def format_input_prompt(body: ScamRequestBody) -> str:
+    return f"I received a {body.medium.value} message from {body.source}. The message reads: {body.description}"
