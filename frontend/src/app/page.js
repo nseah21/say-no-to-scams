@@ -2,11 +2,15 @@
 
 import Layout from "@/components/Layout";
 import FormSection from "@/components/FormSection";
+import NavBar from "@/components/NavBar";
 
 export default function Home() {
   return (
-    <Layout>
-      <FormSection />
-    </Layout>
+    <>
+      <NavBar />
+      <Layout>
+        <FormSection />
+      </Layout>
+    </>
   );
 }
