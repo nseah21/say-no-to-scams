@@ -1,0 +1,32 @@
+# FastAPI Backend
+
+## Setup Instructions
+
+### 1. Change Directory to Backend
+```bash
+cd backend
+```
+
+### 2. Create and Activate Virtual Environment (Optional)
+Good practice but not necessary.
+```bash
+python3 -m venv venv
+```
+Windows:
+```bash
+venv\Scripts\activate
+```
+Linux:
+```bash
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run FastAPI Server
+```bash
+fastapi dev run.py
+```
