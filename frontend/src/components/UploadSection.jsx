@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Mascot from "./Mascot";
+import ResponseSection from "./ResponseSection";
 
-const UploadSection = () => {
+const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Let me evaluate your story and provide you with useful advice!`;
+
+const UploadSection = ({ toggleUseFileUpload }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [showResponse, setShowResponse] = useState(false);
 
   const handleFileChange = (event) => {
     console.log(event.target.files[0]);
@@ -13,6 +17,7 @@ const UploadSection = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(uploadedFile);
+    setShowResponse(true);
   };
 
   const showFileUploadState = () => {
@@ -66,43 +71,57 @@ const UploadSection = () => {
   };
 
   return (
-    <div>
-      <Mascot />
-      <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
-        onSubmit={handleSubmit}
-      >
-        <label
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="Source"
-        >
-          Upload an image
-        </label>
-        <div className="flex items-center justify-center w-full mt-3 mb-6">
-          <label
-            htmlFor="dropzone-file"
-            className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-200 hover:bg-gray-100"
+    <>
+      {showResponse ? (
+        <ResponseSection />
+      ) : (
+        <div>
+          <Mascot text={mascotText} />
+          <form
+            className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
+            onSubmit={handleSubmit}
           >
-            {showFileUploadState()}
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="Source"
+            >
+              Upload an image
+            </label>
+            <div className="flex items-center justify-center w-full mt-3 mb-6">
+              <label
+                htmlFor="dropzone-file"
+                className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-200 hover:bg-gray-100"
+              >
+                {showFileUploadState()}
 
-            <input
-              id="dropzone-file"
-              type="file"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-          </label>
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+              </label>
+            </div>
+            <div className="flex justify-center">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+            <div className="grid place-items-end">
+              <button
+                className="text-sm text-blue-700"
+                onClick={toggleUseFileUpload}
+              >
+                Use a form instead?
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="flex justify-center">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 

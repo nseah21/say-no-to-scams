@@ -2,10 +2,13 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Mascot from "./Mascot";
 
-const FormSection = () => {
+const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Let me evaluate your story and provide you with useful advice!`;
+
+const FormSection = ({ toggleUseFileUpload }) => {
   const sourceRef = useRef("");
   const methodRef = useRef("");
   const descriptionRef = useRef("");
+  const [showResponse, setShowResponse] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,11 +17,9 @@ const FormSection = () => {
     console.log(descriptionRef.current.value);
   };
 
-
-
   return (
-    <container className="w-full max-w-xs">
-      <Mascot />
+    <div>
+      <Mascot text={mascotText} />
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
         onSubmit={handleSubmit}
@@ -80,8 +81,16 @@ const FormSection = () => {
             Submit
           </button>
         </div>
+        <div className="grid place-items-end">
+          <button
+            className="text-sm text-blue-700"
+            onClick={toggleUseFileUpload}
+          >
+            Use a screenshot instead?
+          </button>
+        </div>
       </form>
-    </container>
+    </div>
   );
 };
 
