@@ -47,31 +47,49 @@ def scam_analysis_RAG(input_message: str):
 
     - Type of scam
     - Suggestions"""
+    
+    type_of_scam = ['Car Rental Scam', 'Cold Call Supplier Scam', 'Credit for Sex Scam', 'Cyber Extortion Scam', 
+                    'Home/Room Rental Scam', 'Impersonation Scam', 'Inheritance Scam', 'Internet Love Scam', 
+                    'Investment Scam', 'Job Scam', 'Kidnap Scam', 'Loan Scam', 'Lottery Scam', 'Money Mule Scam', 
+                    'Online Purchase Scam', 'Online Travel Vacation Scam', 'Paypal Email Scam', 'Phishing Scam', 
+                    'Scam using wechat',' Social Media Impersonation/Whatsapp Takeover Scam' ,
+                    'Software Update Scam', 'Spoofed/Hacked Email Scam', 'Wangiri Scam']
+    format_type_of_scam = ' , '.join([str(elem) for elem in type_of_scam])
+    #print(format_type_of_scam)
 
     system_template = """
                     **Context** : You are a helpful and meticulous AI Assistant who will help citizens to detect
                     Scam Messages. Scammers send fake text messages mainly to trick citizens into giving them the 
                     personal information such as password, account number or any confidential information. 
                     
-                    **Main Objective**: Your main objective will help in identifying Scam Messages given the description from the 
-                    users. Based on all the following pieces of retrieved context, you have the ability to differentiate
-                    and identify Scam Messages from other messages. 
+                    **Main Objective**: Your main objective will help in identifying Scam Messages given the 
+                    description from the users. Based on all the following pieces of retrieved context, 
+                    you have the ability to differentiate and identify Scam Messages from other messages. 
                     
                     Context: {context}
                     
                     You should also evaluates the conversations for Scam likelihood, generating an AI score between
                     0 to 100. With 100 being highly suspected Scam and 0 being not likely to be a Scam. 
                     
-                    Your output should contain the following information in JSON format --> Description, Likelihood_of_Scam, 
-                    Score, Explanation, Type_of_Scam, Suggestions to combat against scams. If the description have a low likelihood
-                    of being a scam (low score), the default answer of type of scam should be N/A.
+                    Based on the list of type of scam shown below, you are to determine the type of the scam. 
+                    List of Type_of_Scam: Car Rental Scam , Cold Call Supplier Scam , Credit for Sex Scam , 
+                    Cyber Extortion Scam , Home/Room Rental Scam , Impersonation Scam , Inheritance Scam , 
+                    Internet Love Scam , Investment Scam , Job Scam , Kidnap Scam , Loan Scam , Lottery Scam , 
+                    Money Mule Scam , Online Purchase Scam , Online Travel Vacation Scam , Paypal Email Scam , 
+                    Phishing Scam , Scam using wechat ,  Social Media Impersonation/Whatsapp Takeover Scam , 
+                    Software Update Scam , Spoofed/Hacked Email Scam , Wangiri Scam
+                    
+                    Your output should contain the following information in JSON format --> Description, 
+                    Likelihood_of_Scam, Score, Explanation, Type_of_Scam, Suggestions to combat against scams. 
+                    If the description have a low likelihood of being a scam (low score), the default answer 
+                    for type of scam should be N/A.
                     
                     Description : {description}
 
                     """
     parser = JsonOutputParser(pydantic_object=standard_output)
 
-    retriever = vectorstores.as_retriever(search_type="similarity")
+    retriever = vectorstores.as_retriever(search_type="mmr", search_kwargs={"fetch_k":60, "k":30})
     prompt = ChatPromptTemplate.from_messages(["human", system_template])
     rag_chain = (
         {"context": retriever, "description": RunnablePassthrough()}
@@ -87,4 +105,4 @@ if __name__ == "__main__":
     input = "Congratulations! You've won a $1000 Walmart gift card. Go to http://bit.ly/123456 tp claim now."
     another_try = "Hotel Line? Assisting booking.com, trip.com, etc. It's a scam. I didn’t lose anything, but the company is non-existent. Remember, if it's an entity, there must be a legitimate office and website that you can easily track.Their trick is the same: high base pay plus commission for processing hotel orders. What will happen is they will ask you to wire money for the process to go through."
     try_again = "Hi Sara! It's Malcolm. Sharing my new number with you.\nHey! Got it, thanks for sharing. What’s up?\nI got into an accident on my bicycle going to work today. Can you help me cover some of my aftercare medication costs? I need 150$ right now.\n😧😧 Omg, M! where are you? Yes, I can send some money in the next hour."
-    print(scam_analysis_RAG(try_again))
+    print(scam_analysis_RAG(not_spam_message))
