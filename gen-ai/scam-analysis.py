@@ -1,15 +1,17 @@
 from langchain.prompts.chat import (
     ChatPromptTemplate,
-    SystemMessagePromptTemplate, 
-    HumanMessagePromptTemplate, 
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
 )
 from langchain.schema.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
-def scam_analysis(input_message:str):
+
+def scam_analysis(input_message: str):
     system_template = """
                     **Context** : You are a helpful and meticulous AI Assistant who will help citizens to detect
                     Scam Messages. Scammers send fake text messages mainly to trick citizens into giving them the 
@@ -33,12 +35,11 @@ def scam_analysis(input_message:str):
                     }
 
                     """
-    
+
     messages = [
-        SystemMessage(content = system_template),
-        HumanMessage(content = input_message)
+        SystemMessage(content=system_template),
+        HumanMessage(content=input_message),
     ]
-    
 
     """chat_template = ChatPromptTemplate.from_messages(
         [
@@ -46,14 +47,14 @@ def scam_analysis(input_message:str):
             ("human", "{sms_messages}")
         ]
     )"""
-    llm = ChatOpenAI(model_name = "gpt-3.5-turbo", temperature=0.1)
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.1)
 
     result = llm.invoke(messages)
 
     print(result)
 
+
 if __name__ == "__main__":
     input = "Congratulations! You've won a $1000 Walmart gift card. Go to http://bit.ly/123456 tp claim now."
     non_scam = "i am a stupid idiot person"
     output = scam_analysis(non_scam)
-    
