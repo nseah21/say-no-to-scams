@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 
-from models import ScamRequestBody
 from gen_ai.scam_analysis_RAG import scam_analysis_RAG
+from models import ScamRequestBody
 
 from database.engine import SessionLocal, engine
 from database import models, schemas, query
@@ -30,6 +30,11 @@ async def analyse_scam(body: ScamRequestBody):
     """
     prompt = format_input_prompt(body)
     response = scam_analysis_RAG(prompt)
+
+    # Add the response to the database
+    with SessionLocal() as db:
+        add_response_to_db(response, db)
+
     return {"status": "success", "message": response}
 
 
@@ -54,3 +59,16 @@ def create_scam_record(
 #  Utility functions
 def format_input_prompt(body: ScamRequestBody) -> str:
     return f"I received a {body.medium.value} message from {body.source}. The message reads: {body.description}"
+
+
+def add_response_to_db(response: dict, db: Session):
+    base_scam_record = schemas.BaseScamRecord(
+        description=response["Description"],
+        likelihood_of_scam=response["Likelihood_of_Scam"],
+        score=response["Score"],
+        explanation=response["Explanation"],
+        type_of_scam=response["Type_of_Scam"],
+        suggestions=response["Suggestions to combat against scams"],
+    )
+
+    query.create_scam_record(db, base_scam_record)
