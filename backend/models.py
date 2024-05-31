@@ -24,3 +24,4 @@ class ScamRequestBody(BaseModel):
     source: str
     medium: Medium
     description: str
+    consent: bool

@@ -46,15 +46,16 @@ async def analyse_scam(body: ScamRequestBody):
     prompt = format_input_prompt(body)
     response = scam_analysis_RAG(prompt)
 
-    # Add the response to the database
-    with SessionLocal() as db:
-        add_response_to_db(response, db)
+    if body.consent:
+        # Add the response to the database
+        with SessionLocal() as db:
+            add_response_to_db(response, db)
 
     return {"status": "success", "message": response}
 
 
 @app.post("/analyse-image")
-async def analyse_image(file: UploadFile):
+async def analyse_image(file: UploadFile, consent: bool):
     """
     Endpoint for frontend to call, takes in the path to the image.
     Then, call the scam_analysis_RAG function to get the response.
@@ -68,9 +69,10 @@ async def analyse_image(file: UploadFile):
     # call the image analysis function
     response = image_analysis(file_path)
 
-    # Add the response to the database
-    with SessionLocal() as db:
-        add_response_to_db(response, db)
+    if consent:
+        # Add the response to the database
+        with SessionLocal() as db:
+            add_response_to_db(response, db)
 
     return {"status": "success", "message": response}
 
