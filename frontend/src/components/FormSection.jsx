@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
+import Mascot from "./Mascot";
 
 const FormSection = () => {
   const sourceRef = useRef("");
   const methodRef = useRef("");
   const descriptionRef = useRef("");
-  const [useFileUpload, setUseFileUpload] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,22 +14,11 @@ const FormSection = () => {
     console.log(descriptionRef.current.value);
   };
 
-  const toggleUseFileUpload = () => {
-    setUseFileUpload((useFileUpload) => !useFileUpload);
-  };
+
 
   return (
     <container className="w-full max-w-xs">
-      <div class="flex leading-1.5 p-3 justify-center">
-        <Image src="/icons/robot.png" height={96} width={96} />
-        <div>
-          <p class="shadow p-5 text-sm font-bold text-gray-900 border-gray-200 bg-gray-400 rounded-tr-3xl rounded-br-3xl rounded-tl-3xl">
-            Suspect you have been scammed? I'm MACS, an intelligent agent
-            equipped with RAG capabilities. Let me evaluate your story and
-            provide you with useful advice!
-          </p>
-        </div>
-      </div>
+      <Mascot />
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
         onSubmit={handleSubmit}
@@ -91,9 +80,6 @@ const FormSection = () => {
             Submit
           </button>
         </div>
-        <button className="text-sm text-blue-700" onClick={toggleUseFileUpload}>
-          {useFileUpload ? "Use a form instead?" : "Use a screenshot instead?"}
-        </button>
       </form>
     </container>
   );
