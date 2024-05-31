@@ -33,3 +33,10 @@ fastapi dev main.py
 
 ### 5. Open Browser
 Open [Swagger Page](http://localhost:8000/docs) in browser to view the API documentation.
+
+
+### 6. Database Setup
+- Run docker-compose to start the database
+```bash
+docker-compose up -d --build
+```
