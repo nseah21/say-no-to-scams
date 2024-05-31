@@ -6,6 +6,7 @@ class Medium(Enum):
     """
     Enum for the medium dropdown in the frontend form.
     """
+
     PHONE = "phone"
     SMS = "sms"
     WEBSITE = "website"
@@ -18,6 +19,7 @@ class ScamRequestBody(BaseModel):
     """
     The request body for the scam endpoint. Same fields as the frontend form.
     """
+
     source: str
     medium: Medium
     description: str
