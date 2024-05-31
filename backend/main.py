@@ -1,8 +1,9 @@
-from fastapi import FastAPI, Depends
+from fastapi import Form, FastAPI, Depends, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
 from gen_ai.scam_analysis_RAG import scam_analysis_RAG
+from gen_ai.image_analysis import image_analysis
 from models import ScamRequestBody
 
 from database.engine import SessionLocal, engine
@@ -45,9 +46,33 @@ async def analyse_scam(body: ScamRequestBody):
     prompt = format_input_prompt(body)
     response = scam_analysis_RAG(prompt)
 
-    # Add the response to the database
-    with SessionLocal() as db:
-        add_response_to_db(response, db)
+    if body.consent:
+        # Add the response to the database
+        with SessionLocal() as db:
+            add_response_to_db(response, db)
+
+    return {"status": "success", "message": response}
+
+
+@app.post("/analyse-image")
+async def analyse_image(consent: bool = Form(...), file: UploadFile = UploadFile(...)):
+    """
+    Endpoint for frontend to call, takes in the path to the image.
+    Then, call the scam_analysis_RAG function to get the response.
+    """
+    file_path = f"./gen_ai/assets/{file.filename}"
+
+    # write the file to the assets folder
+    with open(file_path, "wb") as image:
+        image.write(file.file.read())
+
+    # call the image analysis function
+    response = image_analysis(file_path)
+
+    if consent:
+        # Add the response to the database
+        with SessionLocal() as db:
+            add_response_to_db(response, db)
 
     return {"status": "success", "message": response}
 
@@ -72,10 +97,17 @@ def create_scam_record(
 
 #  Utility functions
 def format_input_prompt(body: ScamRequestBody) -> str:
+    """
+    Formats the input prompt for the scam_analysis_RAG function.
+    """
     return f"I received a {body.medium.value} message from {body.source}. The message reads: {body.description}"
 
 
 def add_response_to_db(response: dict, db: Session):
+    """
+    Converts the response from the scam_analysis_RAG function to a BaseScamRecord object.
+    Then, adds the record to the database.
+    """
     base_scam_record = schemas.BaseScamRecord(
         description=response["Description"],
         likelihood_of_scam=response["Likelihood_of_Scam"],
