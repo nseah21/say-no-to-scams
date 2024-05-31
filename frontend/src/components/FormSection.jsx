@@ -10,6 +10,7 @@ const FormSection = ({ toggleUseFileUpload }) => {
   const methodRef = useRef("");
   const descriptionRef = useRef("");
   const [showResponse, setShowResponse] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -64,7 +65,7 @@ const FormSection = ({ toggleUseFileUpload }) => {
               </select>
             </div>
 
-            <div className="mb-5">
+            <div className="mb-2">
               <label
                 className="block text-gray-700 text-md font-bold mb-2"
                 htmlFor="Source"
@@ -78,6 +79,10 @@ const FormSection = ({ toggleUseFileUpload }) => {
                 }
                 ref={descriptionRef}
               />
+            </div>
+            <div className="flex justify-center items-center mb-4">
+              <input checked={consent} onChange={()=>setConsent(!consent)} className="w-4 h-4 border-gray-300" type="checkbox" id="consent" name="consent"/>
+              <label for="consent" className="text-sm text-gray-500 px-2">Would you like to share your story with others to help raise scam awareness?</label>
             </div>
             <div className="flex justify-center">
               <button

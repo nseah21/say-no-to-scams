@@ -8,6 +8,7 @@ const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent a
 const UploadSection = ({ toggleUseFileUpload }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [showResponse, setShowResponse] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   const handleFileChange = (event) => {
     console.log(event.target.files[0]);
@@ -87,7 +88,7 @@ const UploadSection = ({ toggleUseFileUpload }) => {
             >
               Upload an image
             </label>
-            <div className="flex items-center justify-center w-full mt-3 mb-6">
+            <div className="flex items-center justify-center w-full mt-3 mb-4">
               <label
                 htmlFor="dropzone-file"
                 className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-200 hover:bg-gray-100"
@@ -101,6 +102,10 @@ const UploadSection = ({ toggleUseFileUpload }) => {
                   onChange={handleFileChange}
                 />
               </label>
+            </div>
+            <div className="flex justify-center items-center mb-4">
+              <input checked={consent} onChange={()=>setConsent(!consent)} className="w-4 h-4 border-gray-300" type="checkbox" id="consent" name="consent"/>
+              <label for="consent" className="text-sm text-gray-500 px-2">Would you like to share your story with others to help raise scam awareness?</label>
             </div>
             <div className="flex justify-center">
               <button
