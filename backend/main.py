@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, UploadFile
+from fastapi import Form, FastAPI, Depends, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
@@ -55,7 +55,7 @@ async def analyse_scam(body: ScamRequestBody):
 
 
 @app.post("/analyse-image")
-async def analyse_image(file: UploadFile, consent: bool):
+async def analyse_image(consent: bool = Form(...), file: UploadFile = UploadFile(...)):
     """
     Endpoint for frontend to call, takes in the path to the image.
     Then, call the scam_analysis_RAG function to get the response.

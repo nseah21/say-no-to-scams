@@ -29,8 +29,8 @@ const UploadSection = ({ toggleUseFileUpload }) => {
     console.log(uploadedFile);
 
     const formData = new FormData();
-    formData.append("file", uploadedFile);
     formData.append("consent", consent);
+    formData.append("file", uploadedFile);
 
     try {
       const response = await fetch("http://localhost:8000/analyse-image", {
