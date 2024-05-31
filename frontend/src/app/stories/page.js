@@ -2,77 +2,68 @@
 
 import Layout from "@/components/Layout";
 import NavBar from "@/components/NavBar";
+import { useEffect, useState } from "react";
 
 export default function Stories() {
+  const [stories, setStories] = useState([]);
+
+  const fetchData = async () => {
+    const response = await fetch("http://localhost:8000/scam");
+    const results = await response.json();
+    setStories(results);
+  };
+
+  useEffect(() => {
+    console.log(stories);
+    fetchData();
+    console.log(stories);
+  }, []);
+
   return (
     <>
       <NavBar />
       <Layout>
-        <div class="rounded relative overflow-x-auto">
-          <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+        <div className="rounded relative overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-900">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
               <tr>
-                <th scope="col" class="px-6 py-3">
-                  Date
-                </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Category
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
+                  Likelihood of Being a Scam
+                </th>
+                <th scope="col" className="px-6 py-3">
                   Description
                 </th>
-                <th scope="col" class="px-6 py-3">
-                  Advice
+                <th scope="col" className="px-6 py-3">
+                  Suggestions to Combat Scam
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr class="odd:bg-white even:bg-gray-10 border-b">
-                <td class="px-6 py-4">27 May 2024</td>
-                <td class="px-6 py-4">Phishing OTP Scam</td>
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace"
-                >
-                  I received a message from this guy called Marcus, who said
-                  that my bank account was frozen and he could help me resolve
-                  the issue. He wanted me to wait for him to start the recovery
-                  process, and then give him my OTP.
-                </th>
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace"
-                >
-                  Do not reveal your OTP to anyone, including anyone who claims
-                  to be from your bank.
-                </th>
-              </tr>
-              <tr class="odd:bg-white even:bg-gray-100 border-b">
-                <td class="px-6 py-4">23 Apr 2024</td>
-                <td class="px-6 py-4">Impersonation Scam</td>
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace"
-                >
-                  Hi Sara! It's Malcolm. Sharing my new number with you. Hey!
-                  Got it, thanks for sharing. What's up? I got into an accident
-                  on my bicycle going to work today. Can you help me cover some
-                  of my aftercare medication costs? I need 150$ right now.
-                  😨😧omg, M! where are you? Yes, I can send some money in the
-                  next hour.
-                </th>
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace"
-                >
-                  The sudden request for money due to an unexpected accident is
-                  a common tactic used by scammers to elicit sympathy and
-                  financial assistance. Verify the identity of the person
-                  through other means before sending any money. Do not rush into
-                  sending money based on emotional appeals without confirming
-                  the situation.
-                </th>
-              </tr>
+              {stories.map((story, id) => {
+                const description = story.description;
+                const suggestions = story.explanation + " " + story.suggestions;
+                const likelihood =
+                  story.likelihood_of_scam + " (" + story.score + "/100)";
+                const category =
+                  story.type_of_scam == "N/A"
+                    ? "Not a scam"
+                    : story.type_of_scam;
+                return (
+                  <tr className="odd:bg-white even:bg-gray-100 border-b" key={id}>
+                    <td className="px-6 py-4">{category}</td>
+                    <td className="px-6 py-4">{likelihood}</td>
+                    <th className="px-6 py-4 font-normal text-gray-900 whitespace">
+                      {description}
+                    </th>
+                    <th className="px-6 py-4 font-normal text-gray-900 whitespace">
+                      {suggestions}
+                    </th>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
