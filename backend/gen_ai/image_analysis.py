@@ -1,6 +1,7 @@
 import json
-from visual_analysis import visual_analysis
-from scam_analysis_RAG import scam_analysis_RAG
+from .visual_analysis import visual_analysis
+from .scam_analysis_RAG import scam_analysis_RAG
+
 
 def image_analysis(image_file_path: str):
     
