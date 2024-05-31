@@ -86,4 +86,5 @@ if __name__ == "__main__":
     not_spam_message = "Hello, I am feeling very tired today"
     input = "Congratulations! You've won a $1000 Walmart gift card. Go to http://bit.ly/123456 tp claim now."
     another_try = "Hotel Line? Assisting booking.com, trip.com, etc. It's a scam. I didn’t lose anything, but the company is non-existent. Remember, if it's an entity, there must be a legitimate office and website that you can easily track.Their trick is the same: high base pay plus commission for processing hotel orders. What will happen is they will ask you to wire money for the process to go through."
-    scam_analysis_RAG(not_spam_message)
+    try_again = "Hi Sara! It's Malcolm. Sharing my new number with you.\nHey! Got it, thanks for sharing. What’s up?\nI got into an accident on my bicycle going to work today. Can you help me cover some of my aftercare medication costs? I need 150$ right now.\n😧😧 Omg, M! where are you? Yes, I can send some money in the next hour."
+    print(scam_analysis_RAG(try_again))
