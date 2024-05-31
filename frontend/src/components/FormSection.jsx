@@ -27,6 +27,7 @@ const FormSection = ({ toggleUseFileUpload }) => {
       source: sourceRef.current.value,
       medium: mediumRef.current.value,
       description: descriptionRef.current.value,
+      consent: consent,
     };
 
     try {
