@@ -31,7 +31,7 @@ Receive a customised report on the scam risk level determined and our suggestion
 ### 3. 🔎 Read Scam Stories
 Visit our personalised curated Scam Stories Page to view ALL the Scam Stories that were previously updated by other users or curated by us. You will be able to read through all the Scam Stories and gain knowledge all the suggestions and advice provided by our AI model. 
 
-![Suspected Scam Page](./assets/suspected-scam.jpg)
+![Demo Stories Page](./assets/demo-stories-page.png)
 
 #### 📃 How does it help with our problem?
 1. Empowering the Public: Customised Scam Reports & User
