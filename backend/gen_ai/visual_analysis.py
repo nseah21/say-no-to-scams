@@ -18,9 +18,12 @@ def visual_analysis(image_file_path: str):
         {
             "role":"system",
             "content":"""
-            You function as an intelligent web scraping tool. Users will supply a screenshot that may contains messages, description or conversation messages. You are to extract all the important message from the image and format it in a JSON Format. 
+            You function as an intelligent web scraping tool. Users will supply a screenshot that may 
+            contains messages, description or conversation messages. You are to extract all the important 
+            message from the image and format it in a JSON Format. 
 
-            Your output will be a JSON String containing the message from the image. The key should be "message" and the value should be formatted strictly in String format. 
+            Your output will be a JSON String containing the message from the image. The key should be 
+            "message" and the value should be formatted strictly in String format. 
             For example: 
             {
                 "message": "This is the message extracted from the image."
@@ -38,7 +41,8 @@ def visual_analysis(image_file_path: str):
                 },
                 {
                     "type":"text",
-                    "text":"Identify and extract all message from the image. DO NOT try to rephrase the messages from the image."
+                    "text":"""Identify and extract all message from the image. DO NOT try to rephrase the messages 
+                    from the image."""
                 }
             ]
         }

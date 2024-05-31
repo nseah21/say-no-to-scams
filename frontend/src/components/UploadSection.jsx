@@ -3,11 +3,12 @@ import Image from "next/image";
 import Mascot from "./Mascot";
 import ResponseSection from "./ResponseSection";
 
-const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Let me evaluate your story and provide you with useful advice!`;
+const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Tell me your story and I will provide you with useful advice!`;
 
 const UploadSection = ({ toggleUseFileUpload }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [showResponse, setShowResponse] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -44,7 +45,7 @@ const UploadSection = ({ toggleUseFileUpload }) => {
       return (
         <div className="flex flex-col items-center justify-center pt-5 pb-6">
           <Image
-            className="w-8 h-8 mb-4"
+            className="w-8 h-8 mb-5"
             src="/icons/tick-circle-svgrepo-com.svg"
             alt=""
             width={24}
@@ -101,12 +102,12 @@ const UploadSection = ({ toggleUseFileUpload }) => {
             onSubmit={handleSubmit}
           >
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-md font-bold mb-2"
               htmlFor="Source"
             >
               Upload an image
             </label>
-            <div className="flex items-center justify-center w-full mt-3 mb-6">
+            <div className="flex items-center justify-center w-full mt-3 mb-4">
               <label
                 htmlFor="dropzone-file"
                 className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-200 hover:bg-gray-100"
@@ -121,9 +122,13 @@ const UploadSection = ({ toggleUseFileUpload }) => {
                 />
               </label>
             </div>
+            <div className="flex justify-center items-center mb-4">
+              <input checked={consent} onChange={()=>setConsent(!consent)} className="w-4 h-4 border-gray-300" type="checkbox" id="consent" name="consent"/>
+              <label for="consent" className="text-sm text-gray-500 px-2">Would you like to share your story with others to help raise scam awareness?</label>
+            </div>
             <div className="flex justify-center">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-gray-900 w-48 hover:bg-gray-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Submit

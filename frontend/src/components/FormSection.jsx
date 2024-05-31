@@ -10,6 +10,7 @@ const FormSection = ({ toggleUseFileUpload }) => {
   const mediumRef = useRef("");
   const descriptionRef = useRef("");
   const [showResponse, setShowResponse] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   const [description, setDescription] = useState("");
   const [likelihood, setLikelihood] = useState("");
@@ -136,7 +137,7 @@ const FormSection = ({ toggleUseFileUpload }) => {
                   </select>
                 </div>
 
-                <div className="mb-5">
+                <div className="mb-2">
                   <label
                     className="block text-gray-700 text-md font-bold mb-2"
                     htmlFor="Source"
@@ -146,14 +147,28 @@ const FormSection = ({ toggleUseFileUpload }) => {
                   <textarea
                     className="shadow appearance-none border rounded w-full min-h-48 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder={
-                      "Enter a short description here...\n\n\nExample:\n\nI received a call from this number +999 12 345 6789 with a name ‘Starhub Company’ telling me that I won $50,000 dollars.\n\n He asked me to make a bank transfer for a tax payment first before I can receive the prize."
+                      "Enter a short description here...\n\n\nExample:\n\nI received a call from a company called ‘Starhub Company’ telling me that I won $50,000 dollars.\n\nThe guy asked me to make a bank transfer for a tax payment first before I can receive the prize."
                     }
                     ref={descriptionRef}
                   />
                 </div>
+                <div className="flex justify-center items-center mb-4">
+                  <input
+                    checked={consent}
+                    onChange={() => setConsent(!consent)}
+                    className="w-4 h-4 border-gray-300"
+                    type="checkbox"
+                    id="consent"
+                    name="consent"
+                  />
+                  <label for="consent" className="text-sm text-gray-500 px-2">
+                    Would you like to share your story with others to help raise
+                    scam awareness?
+                  </label>
+                </div>
                 <div className="flex justify-center">
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-gray-900 w-48 hover:bg-gray-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
                   >
                     Submit

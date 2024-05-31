@@ -12,7 +12,7 @@ const ResponseSection = ({ description, likelihood, type, suggestions }) => {
             <tr className="bg-gray-200 border-b border-l-black">
               <th
                 scope="row"
-                className="px-6 py-4 font-bold text-gray-900 whitespace"
+                className="px-6 py-4 text-gray-900 whitespace font-semibold"
               >
                 Description of Scam:
               </th>
@@ -21,7 +21,7 @@ const ResponseSection = ({ description, likelihood, type, suggestions }) => {
             <tr className="bg-gray-200 border-b border-l-black">
               <th
                 scope="row"
-                className="px-6 py-4 font-bold text-gray-900 whitespace"
+                className="px-6 py-4 text-gray-900 whitespace font-semibold"
               >
                 Likelihood of Scam:
               </th>
@@ -30,7 +30,7 @@ const ResponseSection = ({ description, likelihood, type, suggestions }) => {
             <tr className="bg-gray-200 border-b border-l-black">
               <th
                 scope="row"
-                className="px-6 py-4 font-bold text-gray-900 whitespace"
+                className="px-6 py-4 text-gray-900 whitespace font-semibold"
               >
                 Category:
               </th>
@@ -39,7 +39,7 @@ const ResponseSection = ({ description, likelihood, type, suggestions }) => {
             <tr className="bg-gray-200 border-b border-l-black">
               <th
                 scope="row"
-                className="px-6 py-4 font-bold text-gray-900 whitespace"
+                className="px-6 py-4 font-semibold text-gray-900 whitespace"
               >
                 Suggestions to Combat Scam:
               </th>
@@ -49,7 +49,7 @@ const ResponseSection = ({ description, likelihood, type, suggestions }) => {
         </table>
         <div className="flex justify-center">
           <Link
-            className="bg-blue-500 hover:bg-blue-700 text-white mt-6 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-gray-900 hover:bg-gray-700 text-white mt-6 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             href="/stories"
           >
             See other scam stories
