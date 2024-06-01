@@ -3,7 +3,7 @@ import Image from "next/image";
 import Mascot from "./Mascot";
 import ResponseSection from "./ResponseSection";
 
-const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent agent equipped with RAG capabilities. Let me evaluate your story and provide you with useful advice!`;
+const mascotText = `Suspect that you've been scammed? I'm MACS, an intelligent LLM equipped with RAG capabilities. Let me evaluate your story and provide you with useful advice!`;
 
 const FormSection = ({ toggleUseFileUpload }) => {
   const sourceRef = useRef("");
@@ -54,7 +54,6 @@ const FormSection = ({ toggleUseFileUpload }) => {
       );
       setType(results.message.Type_of_Scam);
       setLoading(false);
-      console.log(results);
     } catch (error) {
       console.error(error);
     }
@@ -162,7 +161,7 @@ const FormSection = ({ toggleUseFileUpload }) => {
                     id="consent"
                     name="consent"
                   />
-                  <label for="consent" className="text-sm text-gray-500 px-2">
+                  <label htmlFor="consent" className="text-sm text-gray-500 px-2">
                     Would you like to share your story with others to help raise
                     scam awareness?
                   </label>
