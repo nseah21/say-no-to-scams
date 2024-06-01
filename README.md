@@ -4,17 +4,20 @@
 
 ## 👉 Theme 1 - Digital Threats
 #### 👉 Subtheme 1: Tackling Financial Frauds
-With the escalating threat of financial frauds posing a significant challenge to individuals and businesses, it have resulted in numerous financial and emotional damage caused by bank scams. Therefore, to combat the rising threat of bank scams and protect individuals and businesses, we are here to develop a comprehensive solution that overcomes limitations in public awareness, legal frameworks, and the adaptability of fraudsters. 
+With the escalating threat of financial frauds posing a significant challenge to individuals and businesses, it have resulted in numerous financial and emotional damage caused by bank scams. Therefore, to combat against the rising threat of bank scams and protect individuals and businesses, we are here to develop a comprehensive solution that overcomes limitations in public awareness, legal frameworks, and the adaptability of fraudsters. 
 
 ## 🌍 About
-To combat against the rising threat of bank scams: 
-ScamCentral is an innovative web application that leverages on latest AI technologies to analyse text or conversation images for scam detection, allowing users to interact with the system for real-time updates. 
+**To combat against the rising threat of bank scams:**
 
-Leveraging on the latest AI technologies to analyse uploaded conversation images or text description for scam detection, offering accurate replies and suggestions to users. Using cutting-edge technlogies such as GPT-Vision, GPT-4, the platform extract and analyses conversation flows, converting them into JSON format for further evaluation. An innovative scoring system, powered by LangChain Large Language Model (LLM) equipped with a knowledge base will aid in evaluating the scam likelihood, with the integration of a vector databse for enhanced accuracy through similarity search. The Large Language Model will provide real-time feedback to users which include crucial information such as AI-determined scam score, explanation and suggestions to prevent being caught in a Scam trap. 
+**ScamCentral** is an innovative web application that leverages on latest AI technologies to analyse text or conversation images for scam detection, allowing users to interact with the system for real-time updates. 
+
+Leveraging on the latest AI technologies to analyse uploaded conversation images or text description for scam detection, offering accurate replies and suggestions to users. Using cutting-edge technlogies such as GPT-Vision, GPT-4, the platform extract and analyses conversation flows, converting them into JSON format for further evaluation. 
+
+An innovative scoring system, powered by LangChain Large Language Model (LLM) equipped with a knowledge base will aid in evaluating the scam likelihood, with the integration of a vector databse for enhanced accuracy through similarity search. The Large Language Model will provide real-time feedback to users which include crucial information such as AI-determined scam score, explanation and suggestions to prevent being caught in a Scam trap. 
 
 ## 🚀 A Multi-Pronged Approach to Bank Scam Prevention
 ### 1. 🔎 Upload Text Description of Scam 
-Users will need to input Scam Source (Phone number, email address, or website URL), Where did you encounter the scam? (e.g. Email, Phone call, SMS ) as well as the Description of Scam. 
+Users will need to input Scam Source (Phone number, email address, and website URL), Where did you encounter the scam? (e.g. Email, Phone call, SMS ) as well as the Description of Scam. 
 
 ![Form Input Page](./assets/demo-form-input.png)
 
@@ -35,7 +38,7 @@ Visit our personalised curated Scam Stories Page to view ALL the Scam Stories th
 
 #### 📃 How does it help with our problem?
 1. Empowering the Public: Customised Scam Reports & User
-- By allowing users to report and upload scam descriptions, we can create personalized reports that help individuals easily identify and avoid bank scams. This is especially crucial for vulnerable groups like the elderly, who can access the information through a simple and user-friendly interface.
+- By allowing users to report and upload scam descriptions, we can create personalized reports that help individuals easily identify and avoid bank scams. This is especially crucial for vulnerable groups like elderly, who can access the information through a simple and user-friendly interface.
 2. Building Awareness & Knowledge: Personalised Tips for Continuous Learning
 - We go beyond just identifying scams. Our platform provides personalized suggestions and educational resources to help users understand and combat against bank scams, such as ransomware. This fosters public awareness and empowers individuals to protect themselves.
 3. Real-Time Insights & Collaborative Aiding
@@ -58,7 +61,12 @@ Visit our personalised curated Scam Stories Page to view ALL the Scam Stories th
 
 <img alt = "LangChain" src = "https://img.shields.io/github/v/release/hwchase17/langchain.svg"/>
 
-## 🗺️ Our Tech Approach using GenAI
+<img alt = "Selenium" src = "https://img.shields.io/badge/-selenium-CB02A?style=for-the-badge&logo=selenium&logoColor=white">
+
+<h2>🤖 Database </h2>
+<img alt = "PostgreSQL" src = "https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white">
+
+## 🗺️ Our Tech Approach using Artificial Intelligence
 ### 🚂 Large Language Models 
 - GPT-4o: GPT-4o is equipped with capabilities that accepts inputs of any combination such as text, audio and image outputs. We uses both the text and image as input to predict and analyse Scam descriptions. 
 - GPT-4-Turbo & GPT-3.5: Processes the extracted conversation content and analyse the conversation to predict and determine the likelihood of being a Scam. 
@@ -120,6 +128,7 @@ Therefore, Few-shots learning is a very powerful way to control how you want the
 However, we are still faced with hallucination problems. Hallucinations problem arises when Large Language Models (LLMs) generate text that appears coherent and contextually relevant but is factually incorrect or misleading. Hence, to mitigate hallucination, we want to provide the LLM model with a set of knowledge base. 
 
 ### 🛫 Few-Shot Learning with Retrieval Augmented Generation (RAG)
+![Retrieval Augmented Generation](./assets/RAG-information.png)
 Retrieval Augmented Generation (RAG) is emerging as a crucial framework to utilize LLMs in an optimal and efficient manner. RAG enables the dynamic integration of external knowledge sources, enhancing the accuracy and relevance of responses generated by these applications. 
 
 RAG involves searching across a vast corpus of private data and retrieving results that are most similar to the query asked y the user so that it can be passed on to the LLM as context. This approach will allow LLM to better understand the user's query and its context, leading to more accurate and pertinent responses, and reducing hallucinations. 
@@ -136,6 +145,17 @@ RAG involves searching across a vast corpus of private data and retrieving resul
 - When an online query arrives, the system will retrieves relevant chunks from the vector store based on the inputted query. This retrieval step ensures that the system identifies the most pertinent information. 
 5. Generate Output 
 - Finally, the retrieved chunks are used to generate a coherent response. This output can be in the form of text. 
+
+## Conclusion 
+In conclusion, ScamCentral provides and presents a novel approach in combating the growing problem of Bank Scams. By harnessing the power of cutting-edge AI technologies like GPT4-Vision, GPT-4 and LangChain LLM, it offers users a comprehensive solution for real-time scam detection and prevention. Hence, this web application has the potential to significantly enhance online security and financial safety for individuals and organisations. 
+
+## Contributors
+| Contributors | Roles |
+| ---------| -----:|
+| `Nicholas Seah` | Hacker & Hipster |
+| `Bryan Lim` | Hacker & Hustler |
+| `Lim Ke En` | Hacker & Hustler|
+| `SayHong` | Hacker & Hipster |
 
 
 
